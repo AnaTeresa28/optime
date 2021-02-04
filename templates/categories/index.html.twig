@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{
+    parent()
+  }}
+{% endblock %}
+
+{% block body %}
+   {{ parent() }}
+   <div class="container marketing">
+      <hr class="featurette-divider">
+            <h1 style="text-align: center;">Listado de Categorías</h1>
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead style="background: rgba(28,186,204,.95);">
+                        <tr style="text-align: center;">
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Activo</th>
+                            <th>Fecha de Creación</th>
+                            <th>Fecha de Actualización</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for category in categories %}
+                        <tr style="text-align: center;">
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.active ? 'Yes' : 'No' }}</td>
+                            <td>{{ category.createdAt ? category.createdAt|date('Y-m-d') : '' }}</td>
+                            <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d') : '' }}</td>
+                            <td>
+                                    <a style="padding: 15px;" href="{{ path('categories_show', {'id': category.id}) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Detalle">
+                                        {{ include('buttons/buttonVer.html.twig') }}
+                                    </a>
+
+                                    <a style="padding: 15px;" href="{{ path('categories_edit', {'id': category.id}) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                                        {{ include('buttons/buttonEditar.html.twig') }}
+                                    </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            <a href="{{ path('categories_new') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Agregar nueva Categoría">
+                  {{ include('buttons/buttonAgregar.html.twig') }}
+            </a>
+        <hr class="featurette-divider">
+    </div>
+{% endblock %}
+{% block footer %}
+  {{ parent() }}
+{% endblock %}

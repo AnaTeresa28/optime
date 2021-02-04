@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{
+        parent()
+    }}
+{% endblock %}
+
+{% block body %}
+   {{ parent() }}
+   <div class="container marketing">
+      <hr class="featurette-divider">
+        <div class="row featurette">
+                <h1>Categoría: {{ category.name }}</h1>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ category.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>{{ category.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Activo</th>
+                            <td>{{ category.active ? 'Yes' : 'No' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha de Creación</th>
+                            <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha de Actualización</th>
+                            <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ path('categories_edit', {'id': category.id}) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                 <button class="btn btn-light primary" " data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" style="color: #0d6efd;">
+                    {{ include('buttons/buttonEditar.html.twig') }}
+                 </button>
+                </a>
+                {{ include('categories/_delete_form.html.twig') }}
+        </div>
+        <hr class="featurette-divider">
+    </div>
+{% endblock %}
+{% block footer %}
+  {{ parent() }}
+{% endblock %}

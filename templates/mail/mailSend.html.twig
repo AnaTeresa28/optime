@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{
+    parent()
+  }}
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+		<div class="container marketing">
+		      <hr class="featurette-divider">
+				<h4 style="text-align: center;">Correo enviado con éxito, gracias por escribirnos !</h4>
+		        <hr class="featurette-divider">
+		    </div>
+{% endblock %}

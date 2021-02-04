@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{
+    	parent()
+  	}}
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+	<div class="container marketing">
+      <hr class="featurette-divider">
+	        <div class="row featurette">
+	            <div class="container">
+				    <div class="row">
+				        <div class="col-md-8">
+				            <div class="well well-sm">
+								    <h1>Editar Productos</h1>
+								    {{ include('products/_form.html.twig', {'button_label': 'Update'}) }}
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+        <hr class="featurette-divider">
+    </div>
+{% endblock %}
